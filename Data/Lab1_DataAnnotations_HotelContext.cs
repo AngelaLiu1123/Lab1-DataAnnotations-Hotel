@@ -17,5 +17,6 @@ namespace Lab1_DataAnnotations_Hotel.Data
 
         public DbSet<Lab1_DataAnnotations_Hotel.Models.Client> Client { get; set; }
         public DbSet<Lab1_DataAnnotations_Hotel.Models.Room> Room { get; set; }
+        public DbSet<Lab1_DataAnnotations_Hotel.Models.Credit> Credit { get; set; }
     }
 }

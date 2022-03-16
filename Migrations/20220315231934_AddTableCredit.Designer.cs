@@ -4,6 +4,7 @@ using Lab1_DataAnnotations_Hotel.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Lab1_DataAnnotations_Hotel.Migrations
 {
     [DbContext(typeof(HotelContext))]
-    partial class HotelContextModelSnapshot : ModelSnapshot
+    [Migration("20220315231934_AddTableCredit")]
+    partial class AddTableCredit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,10 +84,7 @@ namespace Lab1_DataAnnotations_Hotel.Migrations
                     b.Property<string>("RoomNumber")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("CurrentClientId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PreviousClientId")
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.Property<int>("Section")
@@ -95,10 +94,6 @@ namespace Lab1_DataAnnotations_Hotel.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("RoomNumber");
-
-                    b.HasIndex("CurrentClientId");
-
-                    b.HasIndex("PreviousClientId");
 
                     b.ToTable("Room");
                 });
@@ -112,32 +107,6 @@ namespace Lab1_DataAnnotations_Hotel.Migrations
                         .IsRequired();
 
                     b.Navigation("Client");
-                });
-
-            modelBuilder.Entity("Lab1_DataAnnotations_Hotel.Models.Room", b =>
-                {
-                    b.HasOne("Lab1_DataAnnotations_Hotel.Models.Client", "CurrentClient")
-                        .WithMany("CurrentRooms")
-                        .HasForeignKey("CurrentClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Lab1_DataAnnotations_Hotel.Models.Client", "PreviousClient")
-                        .WithMany("PreviousRooms")
-                        .HasForeignKey("PreviousClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CurrentClient");
-
-                    b.Navigation("PreviousClient");
-                });
-
-            modelBuilder.Entity("Lab1_DataAnnotations_Hotel.Models.Client", b =>
-                {
-                    b.Navigation("CurrentRooms");
-
-                    b.Navigation("PreviousRooms");
                 });
 #pragma warning restore 612, 618
         }
