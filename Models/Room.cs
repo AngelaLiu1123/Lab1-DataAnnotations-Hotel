@@ -13,18 +13,17 @@ namespace Lab1_DataAnnotations_Hotel.Models
 
         public Section Section { get; set; }
 
-        //[InverseProperty("PreviousRoomId")]
-        //public int PreviousClientId { get; set; }
+        [InverseProperty("PreviousRoomId")]
+        public int? PreviousClientId { get; set; }
 
-        
-        public Client PreviousClient { get; set; }
+        public Client? PreviousClient { get; set; }
 
 
-        //[InverseProperty("CurrentRoomId")]
-        //public int CurrentClientId { get; set; }
+        [InverseProperty("CurrentRoomId")]
+        public int? CurrentClientId { get; set; }
 
-        
-        public Client CurrentClient { get; set; }
+
+        public Client? CurrentClient { get; set; }
     }
 
     public enum Section
